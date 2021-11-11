@@ -947,7 +947,7 @@ frida_inject_instance_init_fifo (FridaInjectInstance * self)
 {
   const int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
 
-  self->fifo_path = g_strdup_printf ("%s/linjector-%u", self->temp_path, self->id);
+  self->fifo_path = g_strdup_printf ("%s/%p-%u", self->temp_path, self, self->id);
 
   mkfifo (self->fifo_path, mode);
   chmod (self->fifo_path, mode);
@@ -2856,7 +2856,7 @@ frida_resolve_linker_address (pid_t pid, gpointer func)
   gchar * linker_path;
   GumAddress local_base, remote_base, remote_address;
 
-  if (dladdr (func, &info) != 0) 
+  if (dladdr (func, &info) != 0)
     local_base = GUM_ADDRESS (info.dli_fbase);
   else
     local_base = gum_android_get_linker_module_details ()->range->base_address;
