@@ -151,6 +151,7 @@ if host_os_family == 'darwin'
         host_os,
         resource_compiler,
         '@INPUT0@',
+        files('anti-anti-frida.py'),
       ],
     )
     darwin_sources += [helper_process_data]
