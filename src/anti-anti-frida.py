@@ -22,12 +22,17 @@ if __name__ == "__main__":
 
     binary.write(input_file)
 
+    if sys.platform == "darwin":
+        sed = "gsed"
+    else:
+        sed = "sed"
+
     # gum-js-loop thread
     random_name = "".join(random.sample("abcdefghijklmn", 11))
     print(f"[*] Patch `gum-js-loop` to `{random_name}`")
-    os.system(f"sed -b -i s/gum-js-loop/{random_name}/g {input_file}")
+    os.system(f"{sed} -b -i s/gum-js-loop/{random_name}/g {input_file}")
 
     # gmain thread
     random_name = "".join(random.sample("abcdefghijklmn", 5))
     print(f"[*] Patch `gmain` to `{random_name}`")
-    os.system(f"sed -b -i s/gmain/{random_name}/g {input_file}")
+    os.system(f"{sed} -b -i s/gmain/{random_name}/g {input_file}")
