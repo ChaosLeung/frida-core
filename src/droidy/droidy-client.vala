@@ -974,7 +974,7 @@ namespace Frida.Droidy {
 						case "OPEN":
 						case "CLSE":
 						case "WRTE":
-							throw new Error.PROTOCOL ("Unexpected command");
+							break; //throw new Error.PROTOCOL ("Unexpected command");
 
 						default:
 							var length = parse_length (command_or_length);
