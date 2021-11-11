@@ -138,7 +138,7 @@ class ModuleEditor(object):
 
         elements = []
         is_macho = layout.file_format == 'mach-o'
-        is_arm = layout.arch_name == 'arm'
+        is_arm = layout.arch_name == 'arm' or layout.arch_name == 'armv7'
         is_apple_arm64 = is_macho and layout.arch_name in ('arm64', 'arm64e')
         symbols = layout.symbols
         for value in values:
