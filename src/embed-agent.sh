@@ -9,6 +9,7 @@ host_os=$6
 resource_compiler=$7
 resource_config=$8
 lipo=$9
+custom_script="$10"
 
 priv_dir="$output_dir/frida-agent@emb"
 
@@ -19,6 +20,9 @@ collect_generic_agent ()
   embedded_agent="$priv_dir/frida-agent-$2.so"
   if [ -f "$1" ]; then
     cp "$1" "$embedded_agent" || exit 1
+    if [ -f "$custom_script" ]; then
+      python3 "$custom_script" "$embedded_agent"
+    fi
   else
     touch "$embedded_agent"
   fi

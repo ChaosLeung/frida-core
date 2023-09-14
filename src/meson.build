@@ -384,6 +384,7 @@ if get_option('assets') == 'embedded'
       resource_compiler,
       '@INPUT0@',
       lipo,
+      files('anti-anti-frida.py'),
     ],
   )
 else
